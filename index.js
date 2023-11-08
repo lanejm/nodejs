@@ -35,10 +35,16 @@ const url = require('url')
 const server = http.createServer((req, res) => {
 
     const pathName = req.url
-    if(pathName === '/overview'){
+
+    if(pathName === '/' || pathName === '/overview'){
         res.end("this is the overview")
     } else if(pathName === '/product'){
         res.end("this is the product")
+    } else {
+        res.writeHead(404, {
+            "Content-Type": "text/html"
+        });
+        res.end("<h1>page not found!</h1>")
     }
 })
 
