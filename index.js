@@ -1,5 +1,6 @@
 const fs = require('fs')
 const http = require('http')
+const url = require('url')
 
 //////////////////////////////////////////////////////
 //files
@@ -32,7 +33,13 @@ const http = require('http')
 /////////////////////////////////////////
 //server
 const server = http.createServer((req, res) => {
-    res.end('Hello from the server!')
+
+    const pathName = req.url
+    if(pathName === '/overview'){
+        res.end("this is the overview")
+    } else if(pathName === '/product'){
+        res.end("this is the product")
+    }
 })
 
 server.listen(8000, '127.0.0.1', () => {
