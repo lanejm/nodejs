@@ -33,7 +33,7 @@ const url = require('url')
 /////////////////////////////////////////
 //server
 
-const data = fs.readFileSync('./dev-data/data.json', 'utf-8')
+const data = fs.readFileSync('./dev-data/data.json', 'utf-8') //read file synchronously
 const dataObject = JSON.parse(data)
 
 
