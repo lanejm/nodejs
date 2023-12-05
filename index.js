@@ -32,7 +32,9 @@ const url = require('url')
 
 /////////////////////////////////////////
 //server
-
+const tempOverview = fs.readFileSync('./dev-data/templates/template-overview.html', 'utf-8')
+const tempCard = fs.readFileSync('./dev-data/templates/template-card.html', 'utf-8')
+const tempProduct = fs.readFileSync('./dev-data/templates/template-product.html', 'utf-8')
 const data = fs.readFileSync('./dev-data/data.json', 'utf-8') //read file synchronously
 const dataObject = JSON.parse(data)
 
@@ -41,13 +43,22 @@ const server = http.createServer((req, res) => {
 
     const pathName = req.url
 
+//Overview page
+
     if(pathName === '/' || pathName === '/overview'){
+
         res.end("this is the overview")
+
+    //Product page
     } else if(pathName === '/product'){
         res.end("this is the product")
+
+    //API
     } else if(pathName === '/api') {
         res.writeHead(200, {'Content-Type': 'application/json'})
         res.end(data)
+
+    //Not Found
     } else {
         res.writeHead(404, {
             "Content-Type": "text/html"
